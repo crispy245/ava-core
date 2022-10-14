@@ -11,7 +11,7 @@ Install FuseSoC
 
 Add AVA as a separate library into the workspace
 
-    fusesoc library add ava https://github.com/olofk/serv](https://github.com/crispy245/ava-core
+    fusesoc library add ava https://github.com/crispy245/ava-core
 
 
 If [Verilator](https://www.veripool.org/wiki/verilator) is installed, we can use that as a linter to check the SERV source code
