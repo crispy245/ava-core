@@ -22,12 +22,7 @@ filesets:
       - rtl/vector_lsu.sv
       - rtl/vector_registers.sv
       - rtl/vw_sign_ext.sv
-      file_type : verilogSource
-  
-  verilator_tb: 
-    files:
-      - tb/verilator_tb.cpp
-    file_type : cppSource
+    file_type : verilogSource
 
 targets:
   lint:
