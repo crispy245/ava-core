@@ -1,0 +1,41 @@
+CAPI=2:
+
+name : ::ava-core:0.81
+description: AI vector extension for RISC-V cores
+
+filesets:
+  core:
+    files:
+      - rtl/accelerator_pkg.sv
+      - rtl/accelerator_top.sv
+      - rtl/address_unit.sv
+      - rtl/arith_stage.sv
+      - rtl/bit_ext.sv
+      - rtl/mapping_unit.sv
+      - rtl/pe_32b.sv
+      - rtl/relu_bounds.sv
+      - rtl/sat_unit.sv
+      - rtl/scalar_replicate.sv
+      - rtl/temporary_reg.sv
+      - rtl/vector_csrs.sv
+      - rtl/vector_decoder.sv
+      - rtl/vector_lsu.sv
+      - rtl/vector_registers.sv
+      - rtl/vw_sign_ext.sv
+      file_type : verilogSource
+  
+  verilator_tb: 
+    files:
+      - tb/verilator_tb.cpp
+    file_type : cppSource
+
+targets:
+  lint:
+    default_tool : verilator
+    filesets : [core]
+    tools:
+      verilator:
+        mode : lint-only
+        verilator_options:
+          - "-Wno-CASEINCOMPLETE -Wno-WIDTH"
+    toplevel : accelerator_top
