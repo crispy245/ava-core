@@ -14,7 +14,7 @@
 //
 
 // `include "defs.sv"
-`include "accelerator_pkg.sv" 
+//`include "accelerator_pkg.sv" 
 import accelerator_pkg::*;
 
 module accelerator_top (
