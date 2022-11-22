@@ -21,9 +21,25 @@ filesets:
       - rtl/vector_lsu.sv
       - rtl/vector_registers.sv
       - rtl/vw_sign_ext.sv
+      - rtl/dummy_cpu.sv
     file_type : verilogSource
+  
+  verilator_tb: 
+    files:
+      - tb/tb_tests.cpp 
+    file_type : cppSource
 
 targets:
+
+  default:
+    filesets : [core]
+    toplevel: ["is_toplevel? (accelerator_top)"]
+    tools:
+      verilator:
+        verilator_options:
+          - "--trace"
+          - "-Wno-CASEINCOMPLETE -Wno-WIDTH"
+
   lint:
     default_tool : verilator
     filesets : [core]
@@ -31,5 +47,15 @@ targets:
       verilator:
         mode : lint-only
         verilator_options:
+          - "-Wno-CASEINCOMPLETE -Wno-WIDTH"
+    toplevel : accelerator_top
+
+  verilator_tb:
+    default_tool : verilator
+    filesets : [core,  verilator_tb]
+    tools:
+      verilator:
+        verilator_options:
+          - "--trace"
           - "-Wno-CASEINCOMPLETE -Wno-WIDTH"
     toplevel : accelerator_top
